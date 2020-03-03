@@ -4,10 +4,10 @@
 
   This sketch asks NTP for the Linux epoch and sets the internal Arduino MKR1000's RTC accordingly.
 
-  created 08 Jan 2016
-  by Arturo Guadalupi <a.guadalupi@arduino.cc>
+  updated/modified by Ranganadh K
+  <ranganadh.kollapureddi@gmail.com>
 
-  modified 26 Sept 2018
+  3rd March, 2020
 
   http://arduino.cc/en/Tutorial/WiFiRTC
   This code is in the public domain.
@@ -28,7 +28,9 @@ int keyIndex = 0;                           // your network key Index number (ne
 
 int status = WL_IDLE_STATUS;
 
- const int GMT = 5; //change this to adapt it to your time zone
+ const int GMT = 5; 
+//change this to adapt it to your time zone, however, as it doesn't take float values 
+//for IST i.e. 5.30 cannot be added. for which has been supported further in the code.
 
 void setup() {
   Serial.begin(115200);
@@ -62,7 +64,7 @@ void setup() {
     epoch = WiFi.getTime();
     numberOfTries++;
   }
-  while ((epoch == 0) || (numberOfTries < maxTries));  //replacing || in place of &&
+  while ((epoch == 0) || (numberOfTries < maxTries));  // can use && instead of || in case of errors
 
   if (numberOfTries > maxTries) {
     Serial.print("NTP unreachable!!");
@@ -73,6 +75,8 @@ void setup() {
     Serial.println(epoch);
     
     rtc.setEpoch(epoch+ 88200);
+    // +88200 corresponds to sum of 1800 (which adds 30mins to fit IST) and 
+    // +86,400 (adds 1 day to sum Feb 29th Leap Year error).
 
     Serial.println();
   }
