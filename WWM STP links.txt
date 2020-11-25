@@ -1,0 +1,15 @@
+MODBUS Software Download
+https://www.modbustools.com/download.html
+
+modbusrtu.h Example Code
+https://github.com/KarishmaRamesh/Modbus/blob/master/M2S_reading_SLAVECODE.ino
+
+Circuit Digest Connections etc
+https://circuitdigest.com/microcontroller-projects/rs485-modbus-serial-communication-using-arduino-uno-as-slave
+
+Industriuno Master slve modbus
+https://industruino.com/blog/our-news-1/post/modbus-rtu-master-and-slave-14
+
+
+485 explained
+https://www.activexperts.com/serial-port-component/tutorials/pinout485/
